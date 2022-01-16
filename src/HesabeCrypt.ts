@@ -13,27 +13,19 @@ class HesabeCrypt {
   }
 
   encryptAes(txt: String) {
-    let paddedTxt = this.pkcs5Pad(txt);
-    let txtBytes = aests.utils.utf8.toBytes(paddedTxt);
+    let paddedTxt: any = this.pkcs5Pad(txt);
 
     // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
     let aesCbc = new CBCEncryptor(this.key, this.iv);
-    let encBytes = aesCbc.encrypt(txtBytes);
-
-    let encHex = aests.utils.hex.fromBytes(encBytes);
-    return encHex;
+    return aesCbc.encrypt(paddedTxt);
   }
 
-  decryptAes(encHex: String) {
-    let encBytes = aests.utils.hex.toBytes(encHex);
-
+  decryptAes(encHex: any) {
     // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
     let aesCbc = new CBCDecryptor(this.key, this.iv);
-    let decBytes = aesCbc.decrypt(encBytes);
+    let decBytes: any = aesCbc.decrypt(encHex);
 
-    let decTxt = aests.utils.utf8.fromBytes(decBytes);
-    let strippedTxt = this.pkcs5Strip(decTxt);
-    return strippedTxt;
+    return this.pkcs5Strip(decBytes);
   }
 
   pkcs5Pad(txt: String) {
