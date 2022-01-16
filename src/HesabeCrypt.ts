@@ -1,6 +1,5 @@
 "use strict";
 
-import * as aests from "./../node_modules/aes-ts/src/utils";
 import { CBCEncryptor, CBCDecryptor, Block } from "aes-ts";
 
 class HesabeCrypt {
