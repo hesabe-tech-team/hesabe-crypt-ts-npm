@@ -2,26 +2,19 @@
 
 import { CBCEncryptor, CBCDecryptor, Block } from "aes-ts";
 
-class HesabeCrypt {
-  iv: any;
-  key: any;
+export class HesabeCrypt {
 
-  constructor(secret: String, iv: String) {
-    this.key = secret;
-    this.iv = iv;
-  }
-
-  encryptAes(txt: String) {
+  encryptAes(txt: String, key: any, iv: any) {
     let paddedTxt: any = this.pkcs5Pad(txt);
 
     // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
-    let aesCbc = new CBCEncryptor(this.key, this.iv);
+    let aesCbc = new CBCEncryptor(key, iv);
     return aesCbc.encrypt(paddedTxt);
   }
 
-  decryptAes(encHex: any) {
+  decryptAes(encHex: any, key: any, iv: any) {
     // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
-    let aesCbc = new CBCDecryptor(this.key, this.iv);
+    let aesCbc = new CBCDecryptor(key, iv);
     let decBytes: any = aesCbc.decrypt(encHex);
 
     return this.pkcs5Strip(decBytes);
