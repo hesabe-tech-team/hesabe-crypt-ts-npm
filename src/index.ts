@@ -6,11 +6,6 @@ export class HesabeCrypt {
   iv: any;
   key: any;
 
-  constructor(secret: String, iv: String) {
-    this.key = secret;
-    this.iv = iv;
-  }
-
   encryptAes(txt: String) {
     let paddedTxt: any = this.pkcs5Pad(txt);
 

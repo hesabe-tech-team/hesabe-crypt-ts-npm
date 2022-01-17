@@ -1,7 +1,6 @@
 export declare class HesabeCrypt {
     iv: any;
     key: any;
-    constructor(secret: String, iv: String);
     encryptAes(txt: String): Uint8Array;
     decryptAes(encHex: any): string;
     pkcs5Pad(txt: String): string;
