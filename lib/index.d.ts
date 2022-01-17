@@ -4,4 +4,5 @@ export declare class HesabeCrypt {
     pkcs5Pad(txt: String): string;
     pkcs5Strip(txt: String): string;
     strRepeat(input: any, multiplier: any): string;
+    string2bytes(input: string): string;
 }

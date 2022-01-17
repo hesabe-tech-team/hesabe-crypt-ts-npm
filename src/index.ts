@@ -49,4 +49,11 @@ export class HesabeCrypt {
     }
     return y;
   }
+
+  string2bytes(input: string): string {
+    const uint8Array: Uint8Array = new TextEncoder().encode(input);
+    return Array.from(uint8Array, (byte: number) => {
+      return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+    }).join('')
+  }
 }
