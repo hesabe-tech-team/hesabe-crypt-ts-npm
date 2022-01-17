@@ -2,7 +2,7 @@
 
 import { CBCEncryptor, CBCDecryptor, Block } from "aes-ts";
 
-class HesabeCrypt {
+export class HesabeCrypt {
   iv: any;
   key: any;
 
