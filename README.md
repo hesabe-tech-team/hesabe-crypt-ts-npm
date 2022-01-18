@@ -57,4 +57,4 @@ let decrypted = instance.decryptAes(encrypted, key, iv);
 ```
 
 [npm-image]: https://hesabe-assets.s3.me-south-1.amazonaws.com/Hesabe-Logo.png
-[npm-url]: https://www.npmjs.com/package/hesabe-crypt
+[npm-url]: https://www.npmjs.com/package/hesabe-crypt-ts
