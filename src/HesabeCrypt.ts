@@ -1,23 +1,27 @@
 "use strict";
 
-import { CBCEncryptor, CBCDecryptor, Block } from "aes-ts";
+import * as aesjs from "aes-js";
 
 export class HesabeCrypt {
 
   encryptAes(txt: String, key: any, iv: any) {
-    let paddedTxt: any = this.pkcs5Pad(txt);
+    let paddedTxt = this.pkcs5Pad(txt);
+    let txtBytes = aesjs.utils.utf8.toBytes(paddedTxt);
 
-    // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
-    let aesCbc = new CBCEncryptor(key, iv);
-    return aesCbc.encrypt(paddedTxt);
+    let aesCbc = new aesjs.ModeOfOperation.cbc(key, iv);
+    let encBytes = aesCbc.encrypt(txtBytes);
+
+    let encHex = aesjs.utils.hex.fromBytes(encBytes);
+    return encHex;
   }
 
   decryptAes(encHex: any, key: any, iv: any) {
-    // let aesCbc = new aests.ModeOfOperation.cbc(this.key, this.iv);
-    let aesCbc = new CBCDecryptor(key, iv);
-    let decBytes: any = aesCbc.decrypt(encHex);
-
-    return this.pkcs5Strip(decBytes);
+    let encBytes = aesjs.utils.hex.toBytes(encHex);
+    let aesCbc = new aesjs.ModeOfOperation.cbc(key, iv);
+    let decBytes = aesCbc.decrypt(encBytes);
+    let decTxt = aesjs.utils.utf8.fromBytes(decBytes);
+    let strippedTxt = this.pkcs5Strip(decTxt);
+    return strippedTxt;
   }
 
   pkcs5Pad(txt: String) {
