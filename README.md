@@ -1,13 +1,13 @@
-# hesabe-crypt
+# hesabe-crypt-ts
 
-> Encryption library for Hesabe Payment API 2.0
+> Encryption library for Hesabe Payment API 2.0 for Typescript
 
 [![NPM Version][npm-image]][npm-url]
 
 ## Install
 
 ```bash
-npm i -S hesabe-crypt
+npm i -S hesabe-crypt-ts
 ```
 
 ## Dependencies
